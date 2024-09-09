@@ -1,0 +1,292 @@
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jezeb🌐Media</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #003366; /* Ubururu bukomeye nk'ubwa RBA */
+            padding: 10px;
+            text-align: center;
+        }
+
+        .app-title {
+            color: #FFD700; /* Umuhondo wa RBA */
+            font-size: 36px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #003366; /* Ibara ry'ubururu rya RBA */
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #FFD700; /* Ibara ry'umuhondo nk'iry'amabara ya RBA */
+            text-decoration: none;
+            font-size: 24px;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #002244; /* Ubururu bukonje bwo guhindura ibara */
+            border-radius: 5px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .carousel .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .carousel img {
+            width: 100%;
+            display: block;
+        }
+
+        .carousel .prev, .carousel .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .carousel .prev:hover, .carousel .next:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        footer {
+            background-color: #003366;
+            color: #FFD700;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .podcast-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .podcast-content h2 {
+            color: #003366;
+            font-size: 28px;
+            margin: 10px 0;
+        }
+
+        .podcast-content p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .podcast-player {
+            margin: 20px 0;
+            max-width: 600px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="app-title">Jezeb🌐Media</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showTab('reels')">🎬</a></li>
+                <li><a href="#" onclick="showTab('video')">📹</a></li>
+                <li><a href="#" onclick="showTab('podcast')">🎙</a></li>
+                <li><a href="#" onclick="showTab('about')">ℹ️</a></li>
+                <li><a href="#" onclick="showTab('contact')">✉️</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="reels" class="tab-content">
+            <h2>Reels</h2>
+            <div class="carousel">
+                <div class="slides">
+                    <div class="slide">
+                        <img src="jezeb.jpg" alt="Reel 1">
+                    </div>
+                    <div class="slide">
+                        <img src="https://via.placeholder.com/800x400" alt="Reel 2">
+                    </div>
+                    <div class="slide">
+                        <img src="https://via.placeholder.com/800x400" alt="Reel 3">
+                    </div>
+                </div>
+                <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+                <a class="next" onclick="moveSlide(1)">&#10095;</a>
+            </div>
+        </div>
+
+        <div id="video" class="tab-content">
+            <h2>Video</h2>
+            <video width="100%" controls>
+                <source src="https://www.example.com/sample.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <video width="100%" controls>
+                <source src="https://www.example.com/another-sample.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div id="podcast" class="tab-content">
+            <div class="podcast-content">
+                <h2>Podcast</h2>
+                <p>Welcome to our podcast section! Here, you can listen to our latest episodes and stay updated with our content. Enjoy a variety of podcasts on different topics and themes.</p>
+                
+                <div class="podcast-player">
+                    <h3>Episode 1: Introduction to Jezeb🌐Media</h3>
+                    <audio controls>
+                        <source src="https://www.example.com/episode1.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <div class="podcast-player">
+                    <h3>Episode 2: Deep Dive into Media Trends</h3>
+                    <audio controls>
+                        <source src="https://www.example.com/episode2.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <div class="podcast-player">
+                    <h3>Episode 3: The Future of Media</h3>
+                    <audio controls>
+                        <source src="https://www.example.com/episode3.mp3" type="audio/mp3">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div id="about" class="tab-content">
+            <div class="about-content">
+                <img src="https://via.placeholder.com/150" alt="Jezeb🌐Media Logo">
+                <h2>About Jezeb🌐Media</h2>
+                <p>Welcome to Jezeb🌐Media! We are dedicated to providing you with the latest and greatest content across various media formats. Our platform offers a wide range of reels, videos, podcasts, and more, all designed to keep you engaged and informed.</p>
+                <p>Our mission is to deliver high-quality, entertaining, and educational content to our users, making sure that you have access to the best media available. Thank you for being part of our community!</p>
+            </div>
+        </div>
+
+        <div id="contact" class="tab-content">
+            <div class="contact-content">
+                <h2>Contact Us</h2>
+                <p>If you have any questions, feedback, or inquiries, please use the form below to reach out to us. We will get back to you as soon as possible.</p>
+                <form class="contact-form" action="mailto:your-email@example.com" method="post" enctype="text/plain">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5"placeholder="Your Message" required></textarea>
+
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Jezeb🌐Media</p>
+    </footer>
+        let slideIndex = 0;
+
+    <script>
+        let slideIndex = 0;
+        let slides = document.querySelector('.slides');
+        let slideItems = document.querySelectorAll('.slide');
+
+        function showSlides() {
+            if (slideIndex >= slideItems.length) {slideIndex = 0}    
+            if (slideIndex < 0) {slideIndex = slideItems.length - 1}    
+            slides.style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+
+        function moveSlide(n) {
+            slideIndex += n;
+            showSlides();
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Automatic slide change every 3 seconds
+        setInterval(function() {
+            moveSlide(1);
+        }, 3000);
+    </script>
+</body>
+</html>
+"""
